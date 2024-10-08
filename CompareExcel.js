@@ -1,7 +1,7 @@
 const XLSX = require('xlsx');
 
-const table266Path = '266总表0923.xlsx'; 
-const tableMSPath = '266总表1008.xlsx'; 
+const table0923path = '266总表0923.xlsx'; 
+const table1008path = '266总表1008.xlsx'; 
 
 // 读取 Excel 文件
 function readExcel(filePath) {
@@ -14,31 +14,33 @@ function readExcel(filePath) {
 }
 
 // 读取两个 Excel 文件
-const table266Data = readExcel(table266Path); 
-const tableMSData = readExcel(tableMSPath);
+const table0923Data = readExcel(table0923path); 
+const table1008Data = readExcel(table1008path);
 
-// console.log(tableMSData,'tableMSData');
-// console.log(table266Data,'table266Data');
+// console.log(table1008Data,'table1008Data');
+// console.log(table0923Data,'table0923Data');
 
 
 let newData = [];  
   
-tableMSData.forEach(itemMS => {  
-    const matchInTable266 = table266Data.find(item266 => item266.Key === itemMS.Key);  
+table1008Data.forEach(itemMS => {  
+    const matchInTable266 = table0923Data.find(item266 => item266.Key === itemMS.Key);  
   
     // 如果找到了匹配的Key，并且Translate不相同  
     if (matchInTable266 && matchInTable266.Translate !== itemMS.Translate) {  
         newData.push({  
             Key: itemMS.Key,  
-            Translate: itemMS.Translate,  
-            Translate266: matchInTable266.Translate  
+            ToolRemark:matchInTable266.ToolRemark,
+            Translate1008: itemMS.Translate, 
+            Translate0923: matchInTable266.Translate  
         });  
     } else if (!matchInTable266) {  
-        // 如果没有找到匹配的Key，也添加到新数组中（因为tableMSData中独有的项也应该被包含）  
+        // 如果没有找到匹配的Key，也添加到新数组中（因为table1008Data中独有的项也应该被包含）  
         newData.push({  
             Key: itemMS.Key,  
-            Translate: itemMS.Translate,  
-            Translate266: ''  
+            ToolRemark:itemMS.ToolRemark,
+            Translate1008: itemMS.Translate,  
+            Translate0923: ''  
         });  
     }  
     // 注意：如果Translate相同，则不会添加这条数据到新数组中  
