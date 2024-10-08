@@ -1,7 +1,7 @@
 const XLSX = require('xlsx');
 
 const table266Path = '266总表0923.xlsx'; 
-const tableMSPath = 'MS总表0923.xlsx'; 
+const tableMSPath = '266总表1008.xlsx'; 
 
 // 读取 Excel 文件
 function readExcel(filePath) {
