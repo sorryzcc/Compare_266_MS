@@ -1,7 +1,7 @@
 const XLSX = require('xlsx');
 
-const table0923path = '266总表1010.xlsx'; 
-const table1008path = '266总表1014.xlsx'; 
+const table0923path = '266总表1015.xlsx'; 
+const table1008path = 'MS总表1015.xlsx'; 
 
 // 读取 Excel 文件
 function readExcel(filePath) {
@@ -56,4 +56,4 @@ const workbook = XLSX.utils.book_new();
 XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 
 // 写入 Excel 文件
-XLSX.writeFile(workbook, 'CompareExcel.xlsx');
+XLSX.writeFile(workbook, 'CompareExcel1015.xlsx');
