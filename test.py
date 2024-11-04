@@ -1,8 +1,8 @@
 import pandas as pd
 
 # 加载Excel文件
-df1 = pd.read_excel('266总表1030.xlsx')
-df2 = pd.read_excel('266总表1101.xlsx')
+df1 = pd.read_excel('266总表1101.xlsx')
+df2 = pd.read_excel('266总表1104.xlsx')
 
 # 检查列名，确保它们是一致的
 print(df1.columns)
@@ -14,10 +14,10 @@ df1.columns = ['Key', 'ToolRemark', 'Translate']
 df2.columns = ['Key', 'ToolRemark', 'Translate']
 
 # 合并两个DataFrame，保留所有行
-merged_df = df1.merge(df2, on='Key', how='outer', suffixes=('_1030', '_1101'))
+merged_df = df1.merge(df2, on='Key', how='outer', suffixes=('_1101', '_1104'))
 
 # 找出翻译不同的记录
-diff_df = merged_df[(merged_df['Translate_1030'] != merged_df['Translate_1101'])]
+diff_df = merged_df[(merged_df['Translate_1101'] != merged_df['Translate_1104'])]
 
 # 输出不同的记录到新的Excel文件
-diff_df.to_excel('266总表1030与266总表1101.xlsx', index=False)
+diff_df.to_excel('266总表1101与266总表1104.xlsx', index=False)
